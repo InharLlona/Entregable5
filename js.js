@@ -66,15 +66,14 @@ function escribirprecio () {
 function escribirid () {
     for(unidades in carrito){
        var strr = concatstring("id",parseFloat(unidades)+1);
-       document.getElementById(strr).innerHTML = carrito[unidades].id;
+       document.getElementById(strr).innerHTML = "Id: " + carrito[unidades].id;
     }
 }
 function escribirpreciototal () {
     var suma = 0;
     for(unidades in carrito){
        var strr = concatstring("idPreciot",parseFloat(unidades)+1);
-       mult=carrito[unidades].price * carrito[unidades].count;
-       document.getElementById(strr).innerHTML ="Precio total del producto es de " + mult.toFixed(2) +" €";
+       document.getElementById(strr).innerHTML ="Precio total del producto es de " + (carrito[unidades].price * carrito[unidades].count).toFixed(2) +" €";
        suma = suma + carrito[unidades].price * carrito[unidades].count;
        }
     if(suma>100){
