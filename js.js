@@ -28,10 +28,7 @@ const carrito = [
     premium: false
     }
    ];
-//////Listado del carrito
-   for(product in carrito){
-       console.log(product,"+",carrito[product], "color=blue");
-   }
+
 //////Elimino el elemento con el id 54657
     for(cosas in carrito){
        //console.log(cosas,carrito[cosas].id);
@@ -45,21 +42,6 @@ const carrito = [
         }
       }
     }
-//////
-    var suma = 0;
-    for(unidades in carrito){
-        var suma;
-         suma= suma + carrito[unidades].price * carrito[unidades].count;
-         if (unidades == carrito.length-1){
-                console.log("Total"+ suma + "€");
-          }
-    }
-//////
-    var suma = 0;
-        for(unidades in carrito){
-            if (carrito[unidades].premium == true){
-                console.log(carrito[unidades]);
-            }
-    }
+
     
     
