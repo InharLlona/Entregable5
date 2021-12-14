@@ -33,6 +33,7 @@ const carrito = [
    escribirprecio();
    escribirpreciototal();
    esprime();
+   mostrar();
 
    document.getElementById("idCantidad1").addEventListener("change",()=>cambiar())
    document.getElementById("idCantidad2").addEventListener("change",()=>cambiar())
@@ -72,7 +73,7 @@ function escribirpreciototal () {
     var suma = 0;
     gastos = sonPrime();
     if(gastos == 0){
-        strg = " más gastos de envio, consulte las tablas"
+        strg = " Al haber elegido productos que no son 'prime' tendras que abonar las tasas de envio de 10€. Debiendo pagar "
     }else{
         strg = "";
     }
@@ -82,9 +83,15 @@ function escribirpreciototal () {
        suma = suma + carrito[unidades].price * carrito[unidades].count;
        }
     if(suma>100){
-    document.getElementById("idPreciototal").innerHTML = "El precio total de la compra es de " +(carrito[unidades].price * carrito[unidades].count).toFixed(2) +" €, pero al ser su compra de un importe superior a 100€ le descontaremos el 5%. Por lo que el precio final es de "+ (suma * 0.95).toFixed(2) + " €" + strg;
-    }else{
+            document.getElementById("idPreciototal").innerHTML = "El precio total de la compra es de " +suma.toFixed(2) +" €, pero al ser su compra de un importe superior a 100€ le descontaremos el 5%. Por lo que el precio final es de "+ (suma * 0.95).toFixed(2) + " €." + strg;
+            if(gastos==0){
+                document.getElementById("idPreciototal").innerHTML = "El precio total de la compra es de " +suma.toFixed(2) +" €, pero al ser su compra de un importe superior a 100€ le descontaremos el 5%. Por lo que el precio final es de "+ (suma * 0.95).toFixed(2) + " €." + strg +  (suma * 0.95 + 10).toFixed(2) + "€.";
+            }
+        }else{
         document.getElementById("idPreciototal").innerHTML = "El precio total de la compra es de " +suma.toFixed(2) +" €" + strg ;
+        if(gastos==0){
+            document.getElementById("idPreciototal").innerHTML = "El precio total de la compra es de " +suma.toFixed(2) + " €." + strg +  (suma + 10).toFixed(2) + "€.";
+        }
     } 
 }
 function esprime () {
@@ -93,7 +100,11 @@ function esprime () {
        document.getElementById(strr).checked = carrito[unidades].premium;
     }
 }
-
+function mostrar(){
+    for(product in carrito){
+        console.log(product,"+",carrito[product]);
+    }
+}
 function sonPrime() {
     flag = 1;
     for(product in carrito){
@@ -103,6 +114,7 @@ function sonPrime() {
     }
         return flag;
 }
+
 
 function concatstring (str,i){
 return str + i;
