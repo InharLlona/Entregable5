@@ -18,7 +18,7 @@ const carrito = [
     name: "Caja de rollos de papel para ticketera",
     price: 5.95,
     count: 3,
-    premium: false
+    premium: true
     },
     {
     id: 3143,
@@ -31,12 +31,12 @@ const carrito = [
 //////Listado del carrito
    var flag = 0;
    for(product in carrito){
-       if(carrito[produc].premium == false){
+       if(carrito[product].premium == false){
            flag=1;
        }
        if(product==carrito.length-1 && flag==1){
         console.log("Este pedido tiene gastos de envío");
-       }else{
+       }else if(product==carrito.length-1){
         console.log("Pedido sin gastos de envío");
        }
 
