@@ -1,0 +1,9 @@
+.cTotal{
+    display: flex;
+    flex-direction: column;
+    max-width:800px;
+}
+.cProduct{
+    display:flex;
+    justify-content: space-between;
+}
