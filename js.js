@@ -18,7 +18,7 @@ const carrito = [
     name: "Caja de rollos de papel para ticketera",
     price: 5.95,
     count: 0,
-    premium: true
+    premium: false
     },
     {
     id: 3143,
@@ -70,15 +70,21 @@ function escribirid () {
 }
 function escribirpreciototal () {
     var suma = 0;
+    gastos = sonPrime();
+    if(gastos == 0){
+        strg = " más gastos de envio, consulte las tablas"
+    }else{
+        strg = "";
+    }
     for(unidades in carrito){
        var strr = concatstring("idPreciot",parseFloat(unidades)+1);
        document.getElementById(strr).innerHTML ="Precio total del producto es de " + (carrito[unidades].price * carrito[unidades].count).toFixed(2) +" €";
        suma = suma + carrito[unidades].price * carrito[unidades].count;
        }
     if(suma>100){
-    document.getElementById("idPreciototal").innerHTML = "El precio total de la compra es de " +(carrito[unidades].price * carrito[unidades].count).toFixed(2) +" €, pero al ser su compra de un importe superior a 100€ le descontaremos el 5%. Por lo que el precio final es de "+ (suma * 0.95).toFixed(2) + " €" ;
+    document.getElementById("idPreciototal").innerHTML = "El precio total de la compra es de " +(carrito[unidades].price * carrito[unidades].count).toFixed(2) +" €, pero al ser su compra de un importe superior a 100€ le descontaremos el 5%. Por lo que el precio final es de "+ (suma * 0.95).toFixed(2) + " €" + strg;
     }else{
-        document.getElementById("idPreciototal").innerHTML = "El precio total de la compra es de " +suma.toFixed(2) +" €" ;
+        document.getElementById("idPreciototal").innerHTML = "El precio total de la compra es de " +suma.toFixed(2) +" €" + strg ;
     } 
 }
 function esprime () {
@@ -87,6 +93,17 @@ function esprime () {
        document.getElementById(strr).checked = carrito[unidades].premium;
     }
 }
+
+function sonPrime() {
+    flag = 1;
+    for(product in carrito){
+        if(carrito[product].premium == false && carrito[product].count != 0 ){
+            flag=0;
+        }   
+    }
+        return flag;
+}
+
 function concatstring (str,i){
 return str + i;
 }
