@@ -50,7 +50,6 @@ var cambiar = () =>{
      }
      escribirpreciototal();
 }
-
 function escribirnombres () {
     for(unidades in carrito){
        var strr = concatstring("idNombre",parseFloat(unidades)+1);
@@ -88,8 +87,6 @@ function esprime () {
        document.getElementById(strr).checked = carrito[unidades].premium;
     }
 }
-
-
 function concatstring (str,i){
 return str + i;
 }
